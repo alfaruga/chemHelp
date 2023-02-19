@@ -1,0 +1,14 @@
+POST http://localhost:3001/api/elements
+Content-Type: application/json
+
+{
+    "name": "Hydrogen",
+    "z": "1",
+    "am": "1.008",
+    "isotopes": "<sup>1</sup>H,  <sup>2</sup>H",
+    "symbol": "H"
+    }
+
+
+###
+GET http://localhost:3001/api/elements/H
