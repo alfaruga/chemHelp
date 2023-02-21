@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const elementSchema = new mongoose.Schema({
   name: String,
-  z: Number,
-  am: Number,
+  z: String,
+  am: String,
   isotopes: String,
   symbol: String,
 });

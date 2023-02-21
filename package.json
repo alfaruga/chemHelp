@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.4.3"
+  }
+}

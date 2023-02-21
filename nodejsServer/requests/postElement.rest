@@ -5,7 +5,6 @@ Content-Type: application/json
     "name": "Hydrogen",
     "z": "1",
     "am": "1.008",
-    "isotopes": "<sup>1</sup>H,  <sup>2</sup>H",
     "symbol": "H"
     }
 

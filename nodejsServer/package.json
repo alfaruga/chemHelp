@@ -4,9 +4,9 @@
   "description": "The backend for the chem app I'll use for my job",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js"
   },
   "keywords": [
     "chem",
@@ -16,9 +16,14 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jest": "^29.4.3",
     "mongoose": "^6.9.2",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
   }
 }
