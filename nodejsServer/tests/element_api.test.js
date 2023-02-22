@@ -27,49 +27,33 @@ describe("Tests that get information from the database and don't modify it", () 
     // console.log("TEST: Size of DB", response.body.length);
     expect(response.body).toHaveLength(helper.localElements.length);
   });
-  test("can get a single element using IDs", async () => {
-    const elementsInDb = await helper.elementsInDb();
-    const testElement = elementsInDb[0];
-    console.log("Element to test", testElement);
-
-    const response = await api
-      .get(`/api/elements/${testElement.id}`)
-      .expect(200)
-      .expect("Content-type", /application\/json/);
-
-    expect(response.body).toEqual(testElement);
-  }, 10000);
-
-  test("can get a single element using symbols", async () => {
-    const symbol = "C";
-
-    //const elementsInDb = await helper.elementsInDb();
-    //const element = elementsInDb.find((e) => e.symbol === "C");
-    //console.log(`Symbol from local ${symbol}, element from db:`, element);
-
-    const response = await api
-      .get(`/api/elements/${symbol}`)
-      .expect(200)
-      .expect("Content-type", /application\/json/);
-
-    console.log("body for symbol", response.body);
-    expect(response.body.symbol).toEqual(symbol);
-  });
 
   test("can get the mass for single element using symbols", async () => {
-    const symbol = "C";
+    const element = { C: 1 };
     const mass = 12.011;
-    //const elementsInDb = await helper.elementsInDb();
-    //const element = elementsInDb.find((e) => e.symbol === "C");
-    //console.log(`Symbol from local ${symbol}, element from db:`, element);
 
+    const symbol = Object.keys(element)[0];
+    console.log("symbol from test:", symbol);
     const response = await api
       .get(`/api/elements/${symbol}`)
       .expect(200)
       .expect("Content-type", /application\/json/);
 
-    console.log("body for symbol", response.body);
     expect(Number(response.body.am)).toEqual(mass);
+  });
+
+  test("gets the mass of two or more elements", async () => {
+    const elementObj = { C: 1, O: 2 };
+
+    var massArray = [];
+
+    for (let symbol of Object.keys(elementObj)) {
+      const response = await api.get(`/api/elements/${symbol}`);
+      console.log(response.body);
+      massArray.push(response.body.am);
+    }
+    expect(Number(massArray[0])).toBe(12.011);
+    expect(Number(massArray[1])).toBe(15.999);
   });
 });
 

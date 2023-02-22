@@ -5,6 +5,7 @@ const app = express()
 const cors = require('cors')
 const middleware = require('./utils/middleware')
 const logger= require('./utils/logger')
+require('express-async-errors')
 const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)

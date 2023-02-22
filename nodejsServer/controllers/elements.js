@@ -9,24 +9,23 @@ elementsRouter.get("/home", async (request, response) => {
 
 elementsRouter.get("/", async (request, response) => {
   const elements = await Element.find({});
-  response.json(elements);
+  if (elements) {
+    response.json(elements);
+  } else {
+    response.status(404).end();
+  }
 });
 
-elementsRouter.get("/:id", async (request, response) => {
-  console.log("id params", request.params.id);
+elementsRouter.get("/:symbol", async (request, response) => {
+  console.log("symbol params", request.params.symbol);
 
-  ///This works for two cases: If symbol is given or if Id is given
+  ///This works for two cases: If symbol is given or if symbol is given
 
-  const regex = new RegExp("^[a-zA-Z]+$");
-
-  if (regex.test(request.params.id)) {
-    const element = await Element.findOne({ symbol: `${request.params.id}` });
+  const element = await Element.findOne({ symbol: request.params.symbol });
+  if (element) {
     response.json(element);
-    //console.log("Element from DB if it has symbol", element);
   } else {
-    const element = await Element.findById(request.params.id);
-    response.json(element);
-    //console.log("Element from DB pure ID", element);
+    response.status(404).end();
   }
 });
 
@@ -41,7 +40,7 @@ elementsRouter.post("/", async (request, response) => {
     symbol: body.symbol,
   });
 
-  element.save(element);
-  response.json(element);
+  const savedElement = element.save(element);
+  response.status(201).json(savedElement);
 });
 module.exports = elementsRouter;
