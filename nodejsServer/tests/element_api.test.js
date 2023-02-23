@@ -29,10 +29,10 @@ describe("Tests that get information from the database and don't modify it", () 
   });
 
   test("can get the mass for single element using symbols", async () => {
-    const element = { C: 1 };
+    const element = ["C"];
     const mass = 12.011;
 
-    const symbol = Object.keys(element)[0];
+    const symbol = element[0];
     console.log("symbol from test:", symbol);
     const response = await api
       .get(`/api/elements/${symbol}`)
@@ -43,15 +43,15 @@ describe("Tests that get information from the database and don't modify it", () 
   });
 
   test("gets the mass of two or more elements", async () => {
-    const elementObj = { C: 1, O: 2 };
+    const elementObj = ["C", "O"];
 
     var massArray = [];
-
-    for (let symbol of Object.keys(elementObj)) {
-      const response = await api.get(`/api/elements/${symbol}`);
+    for (let index = 0; index < elementObj.length; index++) {
+      const response = await api.get(`/api/elements/${elementObj[index]}`);
       console.log(response.body);
       massArray.push(response.body.am);
     }
+
     expect(Number(massArray[0])).toBe(12.011);
     expect(Number(massArray[1])).toBe(15.999);
   });
