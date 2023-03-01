@@ -1,43 +1,47 @@
 import "./App.css";
 import { useState } from "react";
-
-const dummyData = [
-  { symbol: "C", am: 12.011 },
-  { symbol: "O", am: 15.999 },
-];
-
-const compound = "CO2";
-const reducedToAtoms = ["C", "O", "O"];
+import { recursiveFunc, splitter } from "./compoundSplitAlgorith";
+import services from "./services/ElementService";
 
 function App() {
   const [compound, setCompound] = useState("");
   const [atomsCount, setAtomsCount] = useState({});
+  const [mass, setMass] = useState({});
 
   const inputHandler = (event) => {
     setCompound(event.target.value);
   };
-
-  const atomsCounter = (subs) => {
-    return subs.reduce((acc, element) => {
-      acc[element] ? (acc[element] += 1) : (acc[element] = 1);
-      return acc;
-    }, {});
+  const getElement =async () => {
+    const symbol = "C";
+    const response = await services.getAll();
+    console.log(response);
+    
+    setMass(response);
   };
 
- 
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const atoms = recursiveFunc(splitter(compound));
+    setAtomsCount({ atoms });
+  };
 
   return (
     <div className="App">
       <p>Hello word</p>
-      <form onSubmit={undefined}>
+      <form onSubmit={submitHandler}>
         <label for></label>
         <input type={"text"} value={compound} onChange={inputHandler}></input>
         <button>Send</button>
       </form>
-      <tr>
-        <td></td>
-      </tr>
-      <table></table>
+      <div>
+        <h1>Compound data: {compound}</h1>
+        <tr>
+          <td></td>
+        </tr>
+        <table></table>
+      </div>
+      <div>Get all elements:</div>
+      <button onClick={getElement}>push to get elements</button>
     </div>
   );
 }
