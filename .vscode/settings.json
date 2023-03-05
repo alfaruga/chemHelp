@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/31948273-5320-44b6-8ef6-a571d0c3f357/resourceGroups/chemHelp/providers/Microsoft.Web/sites/chemHelp",
+    "appService.deploySubpath": "nodejsServer",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}
