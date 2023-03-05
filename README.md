@@ -27,12 +27,9 @@ Tools required to do my job
 ## 📝 Table of Contents
 
 - [About](#about)
-- [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -45,29 +42,29 @@ This project will:
  2) Balance chem equations
 
 
+## Usage 
 
 ### Retrieve all the peirodic table in JSON format
 
 To get the information of a single element go to:
-<a>chemhelp-node-rest-api.azurewebsites.net/api/elements</a>
+https://chemhelp-node-rest-api.azurewebsites.net/api/elements
 
-### Retrieve data ofan element in JSON format
+### Retrieve data of an element in JSON format
 
-To get the information of a single element go to:
-<a>chemhelp-node-rest-api.azurewebsites.net/api/elements/</a>"element symbol"
+To get the information of a single element use the default route (api/elements) + the element symbol.
 
 Example
 
 ```
-<a>chemhelp-node-rest-api.azurewebsites.net/api/elements/H</a>
+https://chemhelp-node-rest-api.azurewebsites.net/api/elements/H
 ```
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
-The test were for the nodeJS only. Using Jest. And we can get the mass of two or more elements. To be implemented...
+Some test were run using Jest for the routes defined. So far the mass of two or more elements can be obtained. Yet to be implemented...
 ## 🚀 Deployment <a name = "deployment"></a>
 
-It was deploy on Azure using Azure app srvices and AzureCosmosDB for MongoDB
+It was deploy on Azure using Azure app services and AzureCosmosDB for MongoDB.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -77,7 +74,8 @@ It was deploy on Azure using Azure app srvices and AzureCosmosDB for MongoDB
 
 ## ✍️ Authors <a name = "authors"></a>
 
+Alexis Ruiz (https://github.com/alfaruga)
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+##  References <a name = "acknowledgement"></a>
 
 - References FullStackOpen : (https://wwww.fullstackopen.com/)
