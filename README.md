@@ -7,21 +7,12 @@
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-
 </div>
 
 ---
 
-<p align="center"> # chemHelp
+<p align="center">
 Tools required to do my job
-
-
-
-    <br> 
 </p>
 
 ## 📝 Table of Contents
@@ -46,7 +37,7 @@ This project will:
 
 ### Retrieve all the peirodic table in JSON format
 
-To get the information of a single element go to:
+To get the information of a all elements follow the link:
 https://chemhelp-node-rest-api.azurewebsites.net/api/elements
 
 ### Retrieve data of an element in JSON format
