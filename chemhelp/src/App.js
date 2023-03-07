@@ -1,28 +1,45 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { recursiveFunc, splitter } from "./compoundSplitAlgorith";
 import services from "./services/ElementService";
-
+import Table from "./components/Table/Table";
 function App() {
   const [compound, setCompound] = useState("");
   const [atomsCount, setAtomsCount] = useState({});
-  const [mass, setMass] = useState({});
+  const [mass, setMass] = useState(0);
+  const [tableData, setTableData] = useState([]);
 
   const inputHandler = (event) => {
     setCompound(event.target.value);
   };
-  const getElement =async () => {
-    const symbol = "C";
-    const response = await services.getAll();
-    console.log(response);
-    
-    setMass(response);
+
+  const massGetter = async (atoms) => {
+    console.log("This is from the getter", atoms);
+    let mass = 0;
+    let arr = [];
+    for (const [atom, count] of Object.entries(atoms)) {
+      const atomData = await services.getOne(atom);
+      mass += atomData.am * count;
+
+      let tableObJ = {
+        count: count,
+        atom: atom,
+        am: atomData.am,
+        subtotalMass: atomData.am * count,
+      };
+      arr.push(tableObJ);
+    }
+    setTableData(arr);
+    setMass(mass);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
+
     const atoms = recursiveFunc(splitter(compound));
-    setAtomsCount({ atoms });
+    massGetter(atoms);
+
+    setAtomsCount({ ...atoms });
   };
 
   return (
@@ -35,13 +52,9 @@ function App() {
       </form>
       <div>
         <h1>Compound data: {compound}</h1>
-        <tr>
-          <td></td>
-        </tr>
-        <table></table>
+
+        <Table tableData={tableData} molecularMass={mass} />
       </div>
-      <div>Get all elements:</div>
-      <button onClick={getElement}>push to get elements</button>
     </div>
   );
 }
