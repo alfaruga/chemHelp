@@ -24,6 +24,7 @@ app.use(middleware.requestLogger)
 app.use('/api/elements', elementsRouter)
 
 app.use(middleware.unknownEndpoint)
+app.use(express.static('build'))
 app.use(middleware.errorHandler)
 
 module.exports = app
