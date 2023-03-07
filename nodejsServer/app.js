@@ -15,6 +15,7 @@ mongoose.connect(config.MONGODB_URI).then(()=>{
 }).catch((error)=>{
     logger.error('error connecting to MongoDB:', error.message)
 })
+app.use(express.static('build'))
 
 app.use(cors())
 //app.use(express.static('build'))
@@ -24,7 +25,6 @@ app.use(middleware.requestLogger)
 app.use('/api/elements', elementsRouter)
 
 app.use(middleware.unknownEndpoint)
-app.use(express.static('build'))
 app.use(middleware.errorHandler)
 
 module.exports = app
