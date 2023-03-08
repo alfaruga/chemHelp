@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { recursiveFunc, splitter } from "./compoundSplitAlgorith";
 import services from "./services/ElementService";
 import Table from "./components/Table/Table";
+import SearchArea from "./components/SearchArea/SearchArea";
+
 function App() {
   const [compound, setCompound] = useState("");
-  const [atomsCount, setAtomsCount] = useState({});
   const [mass, setMass] = useState(0);
   const [tableData, setTableData] = useState([]);
 
@@ -14,7 +15,6 @@ function App() {
   };
 
   const massGetter = async (atoms) => {
-    console.log("This is from the getter", atoms);
     let mass = 0;
     let arr = [];
     for (const [atom, count] of Object.entries(atoms)) {
@@ -38,21 +38,18 @@ function App() {
 
     const atoms = recursiveFunc(splitter(compound));
     massGetter(atoms);
-
-    setAtomsCount({ ...atoms });
   };
 
   return (
     <div className="App">
-      <p>Hello word</p>
-      <form onSubmit={submitHandler}>
-        <label for></label>
-        <input type={"text"} value={compound} onChange={inputHandler}></input>
-        <button>Send</button>
-      </form>
+      <h1>Molecular weight Calcualtor</h1>
       <div>
-        <h1>Compound data: {compound}</h1>
-
+        <h2>Compound formula: {compound}</h2>
+        <SearchArea
+          compound={compound}
+          inputHandler={inputHandler}
+          submitHandler={submitHandler}
+        />
         <Table tableData={tableData} molecularMass={mass} />
       </div>
     </div>

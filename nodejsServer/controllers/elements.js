@@ -25,7 +25,7 @@ elementsRouter.get("/:symbol", async (request, response) => {
   if (element) {
     response.json(element);
   } else {
-    response.status(404).end();
+    response.status(404).end("Element does not exist");
   }
 });
 
