@@ -25,7 +25,7 @@ Tools required to do my job
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
-Homepage [Azure](https://chemhelp-node-rest-api.azurewebsites.net/) and [Fly.io](https://chem-helper1st.fly.dev/)
+Homepage [Azure](https://chemhelp-node-rest-api.azurewebsites.net/) (currntly offline!) and [Fly.io](https://chem-helper1st.fly.dev/)
 
 This project will:
  
